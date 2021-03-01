@@ -25,7 +25,7 @@ import com.mjava.service.ShoesService;
 import com.mjava.service.UsersService;
 
 @Controller
- 
+
 @RequestMapping("/")
 public class CommonController {
 
@@ -34,7 +34,7 @@ public class CommonController {
 	public String homeForm() {
 		return "index";
 	}
-	 
+
 	@Autowired
 	private ShoesService shoeservice;
 	@Autowired
@@ -154,15 +154,14 @@ public class CommonController {
 	}
 
 	@GetMapping("/adminsignin")
-	public String adminSigninMethod(ModelMap model,  @RequestParam String username, @RequestParam String password) {
+	public String adminSigninMethod(ModelMap model, @RequestParam String username, @RequestParam String password) {
 
 		int rollid = 0;
 		try {
 
 			UserInfoModel userInfoModel = userservice.isValidAdminUserService(username, password);
 
-			if(userInfoModel==null)
-			{
+			if (userInfoModel == null) {
 				model.put("errorMessage", "Invalid Credentials");
 				return "signinForm";
 			}
@@ -170,12 +169,12 @@ public class CommonController {
 
 			if (rollid == 1) {
 				List<ShoesDataModel> mensData = shoeservice.getMensShoeData();
-				 
+
 				model.put("men_women_kids_ShoeDataname", mensData);
 				model.put("username", username.toUpperCase());
 				model.put("password", password);
 				return "adminForm";
-				 
+
 			} else if (rollid == 2) {
 				model.put("username", username);
 				model.put("password", password);
@@ -291,12 +290,12 @@ public class CommonController {
 	public String reportsMethod(ModelMap model) {
 
 		List<OrderedShoeModel> orderedShoeList = null;
-		 try {
+		try {
 
 			orderedShoeList = orderservice.getCompleteTransactionsDataService();
-			 
+
 			if (orderedShoeList != null) {
-				  
+
 				double totalSales = 0;
 				for (OrderedShoeModel osl : orderedShoeList) {
 					totalSales = totalSales + osl.getTotalprice();
@@ -307,10 +306,10 @@ public class CommonController {
 
 			}
 			return "reportsForm";
-		 } catch (Exception e) {
-			 System.out.println("Exception at com.mjava.controllers.CommonController.reportsMethod() " + e.getMessage());
-			 return "reportsForm";
-		 }
+		} catch (Exception e) {
+			System.out.println("Exception at com.mjava.controllers.CommonController.reportsMethod() " + e.getMessage());
+			return "reportsForm";
+		}
 	}
 
 	@GetMapping("/changeadminPassword")
@@ -404,10 +403,27 @@ public class CommonController {
 			}
 
 			boolean isInsertedNewProduct = false;
-			  isInsertedNewProduct=shoeservice.insertNewProductService(categeroy, prod_price, prod_name, prod_img);
+			isInsertedNewProduct = shoeservice.insertNewProductService(categeroy, prod_price, prod_name, prod_img);
 			if (isInsertedNewProduct == true) {
+				if (categeroy == 1) {
+					List<ShoesDataModel> mensData = shoeservice.getMensShoeData();
 
-				return "adminForm";
+					model.put("men_women_kids_ShoeDataname", mensData);
+					return "adminForm";
+				}
+
+				if (categeroy == 2) {
+					List<ShoesDataModel> womensData = shoeservice.getWomensShoeData();
+
+					model.put("men_women_kids_ShoeDataname", womensData);
+					return "adminForm";
+				}
+				if (categeroy == 3) {
+					List<ShoesDataModel> kidsData = shoeservice.getKidsShoeData();
+
+					model.put("men_women_kids_ShoeDataname", kidsData);
+					return "adminForm";
+				}
 
 			} else {
 				System.out.println("Product Not Added");
@@ -441,7 +457,7 @@ public class CommonController {
 			isInserted = true;
 			userservice.insertUserDataService(firstname, lastname, password, confirmpassword, rollid, mobileno, email);
 			if (isInserted == true) {
-				 
+
 				return "signinForm";
 			}
 
@@ -485,21 +501,18 @@ public class CommonController {
 			return "adminForm";
 		}
 	}
-	
-	
-	
+
 	@GetMapping("/updateProduct")
 	public String updateProductMethod(ModelMap model, @RequestParam int id) {
 
 		boolean isupdated = false;
-		 ShoesDataModel  shoesData = null;
-		//ShoesDataModel findwhichCategeory = null;
+		ShoesDataModel shoesData = null;
+		// ShoesDataModel findwhichCategeory = null;
 		try {
 
-			shoesData  = shoeservice.getshoesDataByIdService(id);
-			
-			if(shoesData.getId()>0)
-			{
+			shoesData = shoeservice.getshoesDataByIdService(id);
+
+			if (shoesData.getId() > 0) {
 				model.put("men_women_kids_ShoeDataname", shoesData);
 				return "updateProductForm";
 			}
@@ -520,16 +533,15 @@ public class CommonController {
 			return "adminForm";
 		}
 	}
-	
-	 
+
 	@GetMapping("/updatetoNewproduct")
 	public String updateProductMethod(ModelMap model, @RequestParam String weartype, @RequestParam String prod_name,
-			@RequestParam double prod_price, @RequestParam String prod_img,@RequestParam int prod_id) {
+			@RequestParam double prod_price, @RequestParam String prod_img, @RequestParam int prod_id) {
 
 		boolean isupdated = false;
-		 ShoesDataModel  shoesData = null;
-		List< ShoesDataModel>  shoesDataList = null;
-		//ShoesDataModel findwhichCategeory = null;
+		ShoesDataModel shoesData = null;
+		List<ShoesDataModel> shoesDataList = null;
+		// ShoesDataModel findwhichCategeory = null;
 		try {
 			int categeory = 0;
 			if (weartype.equals("Mens_Wear")) {
@@ -539,16 +551,16 @@ public class CommonController {
 			} else if (weartype.equals("Kids_Wear")) {
 				categeory = 3;
 			}
-			isupdated  = shoeservice.updateShoeProductService(categeory, prod_price, prod_name, prod_img, prod_id);
-			 if (isupdated == true) {
- 			shoesDataList = shoeservice.getShoeDatabyCategeory(categeory);
- 
- 				model.put("men_women_kids_ShoeDataname", shoesDataList);
- 
- 		}
- 
- 		return "adminForm";
-			 
+			isupdated = shoeservice.updateShoeProductService(categeory, prod_price, prod_name, prod_img, prod_id);
+			if (isupdated == true) {
+				shoesDataList = shoeservice.getShoeDatabyCategeory(categeory);
+
+				model.put("men_women_kids_ShoeDataname", shoesDataList);
+
+			}
+
+			return "adminForm";
+
 		} catch (Exception e) {
 			System.out.println(
 					"Exception at com.mjava.controllers.CommonController.deleteProductMethod() " + e.getMessage());

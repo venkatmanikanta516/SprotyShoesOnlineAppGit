@@ -5,6 +5,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Sign In</title>
+<link rel = "icon" href =  
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJa_o8puRBtOQeKsrlO3v3BqUI9T5SRgWjkQ&usqp=CAU" 
+        type = "image/x-icon">
 <link  rel="stylesheet" type="text/css" href="css/signinFormStyle.css">
 </head>
 <body>
@@ -17,8 +20,8 @@
            <b>Login</b><br><br>
             <b><font color="red">${errorMessage}</font></b>
          <br>    
-           User Name : <input class="textboxstyle" type="text" name="username" value="ram">  <br>
-          Password : <input class="textboxstyle" type="password" name="password" value="ram1234"> <br>
+           User Name : <input class="textboxstyle" type="text" name="username"  >  <br>
+          Password : <input class="textboxstyle" type="password" name="password"  > <br>
           <input class="buttonstyle" type="submit" value="Signin"> 
  
            </form>

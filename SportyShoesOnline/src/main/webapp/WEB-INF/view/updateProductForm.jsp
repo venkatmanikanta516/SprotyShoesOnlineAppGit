@@ -5,16 +5,21 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Update Product</title>
+<link rel = "icon" href =  
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJa_o8puRBtOQeKsrlO3v3BqUI9T5SRgWjkQ&usqp=CAU" 
+        type = "image/x-icon">
+<link  rel="stylesheet" type="text/css" href="css/signUpFormStyle.css">
 </head>
 <body>
 	<%@include file="adminHeader.jsp"%>
-	<h1>Update Product Here</h1>
+	
 
 	<div id="addFlightDiv">
 
 
 		<form name="addProductform" class="addflightformstyle"
 			action="updatetoNewproduct" onsubmit="return addFlightvalidateForm()">
+			<b>Update Product Here</b><br> 
 			<br> Product ID : <input class="textboxstyle" type="text"
 				name="prod_id" value="${men_women_kids_ShoeDataname.id}"><br>
 			Product Categeroy :

@@ -1,0 +1,19 @@
+
+Technology Information :
+========================
+IDE: Eclipse
+Project Type: SpringBoot Maven Web Project with embedded tomcat 
+DataBase: MySql
+port No : 8080
+
+
+Admin Credentials :
+=================
+User Name :: ram
+Password :: ram1234
+
+Mysql Connection Properties Location in Project :
+=================================================
+/SportyShoesOnline/src/main/resources/application.properties
+
+
