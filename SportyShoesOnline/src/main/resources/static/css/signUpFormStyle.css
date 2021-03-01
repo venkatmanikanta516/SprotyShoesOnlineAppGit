@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+b{
+	
+	color: red;
+	 
+}
+
+form{
+	 left      : 25%;
+    top       : 10%;
+    
+    background-color: yellow;	
+    padding: 20px;
+    font-size: 30px;
+     
+     margin-right: 300px;
+     margin-left: 200px;
+    
+}
+.buttonstyle{
+	font-size: 30px;
+	background-color: green;
+	
+}

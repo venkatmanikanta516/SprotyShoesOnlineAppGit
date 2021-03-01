@@ -1,0 +1,63 @@
+@charset "ISO-8859-1";
+.imgdiv{
+	
+	display: block;
+  margin-left : 80px;
+   
+   
+  width: 30%;
+  
+  border: 1px solid blue;    
+   
+}
+img
+{
+display: block;
+  padding-left: 20px;
+  padding-bottom: 70px;
+      width: 100%;
+  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+
+
+
+ 
+a.btn {
+    color: #fff;
+}
+.btn-full {
+    width: 100%;
+}
+.btn-red {
+    background: #db001b;
+    color: #fff;
+}
+.btn {
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    height: 45px;
+    line-height: 45px;
+    padding: 0;
+}
